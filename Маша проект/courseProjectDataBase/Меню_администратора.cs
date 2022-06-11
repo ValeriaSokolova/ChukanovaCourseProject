@@ -16,26 +16,27 @@ namespace КП_БД
         public Меню_администратора()
         {
             InitializeComponent();
-            var allTypesOfWorkPlaces = b.getTypesOfWorkPlaces();
-            foreach (var m in allTypesOfWorkPlaces)
-            {
-                comboBox4.Items.Add(m);
-            }
-            var allTypesOfJobTitle = b.getTypesOfJobTitle();
-            foreach (var m in allTypesOfJobTitle)
-            {
-                comboBox2.Items.Add(m);
-            }
-            var allTypesOfStatus = b.getTypesOfStatus();
-            foreach (var m in allTypesOfStatus)
-            {
-                comboBox1.Items.Add(m);
-            }
-            var allTypesOfPhone = b.getTypesOfPhone();
-            foreach (var m in allTypesOfPhone)
-            {
-                comboBox3.Items.Add(m);
-            }
+            //var allTypesOfWorkPlaces = b.getTypesOfWorkPlaces();
+            //foreach (var m in allTypesOfWorkPlaces)
+            //{
+            //    comboBox4.Items.Add(m);
+            //}
+            //var allTypesOfJobTitle = b.getTypesOfJobTitle();
+            //foreach (var m in allTypesOfJobTitle)
+            //{
+            //    comboBox2.Items.Add(m);
+            //}
+            //var allTypesOfStatus = b.getTypesOfStatus();
+            //foreach (var m in allTypesOfStatus)
+            //{
+            //    comboBox1.Items.Add(m);
+            //}
+            //var allTypesOfPhone = b.getTypesOfPhone();
+            //foreach (var m in allTypesOfPhone)
+            //{
+            //    comboBox3.Items.Add(m);
+            //}
+            b.DisplayPlastinkaData(dataGridView1);
 
         }
         // добавить

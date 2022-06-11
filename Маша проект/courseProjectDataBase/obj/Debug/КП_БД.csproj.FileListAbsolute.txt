@@ -24,3 +24,16 @@ C:\Users\Валерия\Desktop\Институт\Курсовые\БД\КП_БД
 C:\Users\Валерия\Desktop\Институт\Курсовые\БД\КП_БД\courseProjectDataBase\bin\Debug\КП_БД.exe.config
 C:\Users\Валерия\Desktop\Институт\Курсовые\БД\КП_БД\courseProjectDataBase\bin\Debug\КП_БД.exe
 C:\Users\Валерия\Desktop\Институт\Курсовые\БД\КП_БД\courseProjectDataBase\bin\Debug\КП_БД.pdb
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.csproj.AssemblyReference.cache
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.csproj.SuggestedBindingRedirects.cache
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.Form1.resources
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.Properties.Resources.resources
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.Меню_администратора.resources
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.Меню_пользователя.resources
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.csproj.GenerateResource.cache
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.csproj.CoreCompileInputs.cache
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.exe
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\obj\Debug\КП_БД.pdb
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\bin\Debug\КП_БД.exe.config
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\bin\Debug\КП_БД.exe
+C:\Users\Валерия\Desktop\ChukanovaCourseProject\Маша проект\courseProjectDataBase\bin\Debug\КП_БД.pdb

@@ -19,19 +19,20 @@ namespace КП_БД
 
 
 
-        private string connectionString = @"Data Source = HOME-PC\SQLEXPRESS; Initial Catalog = SOKOLOVA;Integrated Security = True;";
-        public void DisplayPeopleData(DataGridView dataGrid)
+        private string connectionString = @"Data Source = HOME-PC\SQLEXPRESS; Initial Catalog = Музыкальный_магазин;Integrated Security = True;";
+        public void DisplayPlastinkaData(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("select * from ЧЕЛОВЕК", connectionString);
+                adapter = new SqlDataAdapter("select * from ПЛАСТИНКА", connectionString);
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
             }
         }
+
 
         public void DisplayPeopleDataAndPhoneData(DataGridView dataGrid)
         {
@@ -224,7 +225,7 @@ namespace КП_БД
                     cmd.ExecuteNonQuery();
                     connection.Close();
                     MessageBox.Show("Добавлено");
-                    DisplayPeopleData(dataGrid);
+                    //DisplayPeopleData(dataGrid);
 
                 }
             }
@@ -514,7 +515,7 @@ namespace КП_БД
             }
             DeleteAdressById(adressId);
             DeletePhoneNumberById(phoneNumberId);
-            DisplayPeopleData(dataGrid);
+            //DisplayPeopleData(dataGrid);
         }
     }
 }
