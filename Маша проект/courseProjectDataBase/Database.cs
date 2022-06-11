@@ -129,7 +129,7 @@ namespace КП_БД
         //        connection.Close();
         //    }
         //}
-        public List<string> getTypesOfWorkPlaces()
+        public List<string> getTypesOfPrices()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -137,18 +137,18 @@ namespace КП_БД
                 int n = 5;
                 List<string> s = new List< string>();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("select * from МЕСТО_РАБОТЫ", connectionString);
+                adapter = new SqlDataAdapter("select * from ЦЕНА", connectionString);
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    s.Add(Convert.ToString(dr["МЕСТО_РАБОТЫ"]) );
+                    s.Add(Convert.ToString(dr["ЦЕНА"]) );
                 }
                 connection.Close();
                 return s;
             }
         }
 
-        public List<string> getTypesOfJobTitle()
+        public List<string> getTypesOfPlastinka()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -156,11 +156,11 @@ namespace КП_БД
                 int n = 5;
                 List<string> s = new List<string>();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("select * from ДОЛЖНОСТЬ", connectionString);
+                adapter = new SqlDataAdapter("select * from ТИП_ПЛАСТИНКИ", connectionString);
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    s.Add(Convert.ToString(dr["ДОЛЖНОСТЬ"]));
+                    s.Add(Convert.ToString(dr["ТИП_ПЛАСТИНКИ"]));
                 }
                 connection.Close();
                 return s;

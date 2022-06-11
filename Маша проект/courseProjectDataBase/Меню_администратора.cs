@@ -16,16 +16,16 @@ namespace КП_БД
         public Меню_администратора()
         {
             InitializeComponent();
-            //var allTypesOfWorkPlaces = b.getTypesOfWorkPlaces();
-            //foreach (var m in allTypesOfWorkPlaces)
-            //{
-            //    comboBox4.Items.Add(m);
-            //}
-            //var allTypesOfJobTitle = b.getTypesOfJobTitle();
-            //foreach (var m in allTypesOfJobTitle)
-            //{
-            //    comboBox2.Items.Add(m);
-            //}
+            var allTypesOfPrices = b.getTypesOfPrices();
+            foreach (var m in allTypesOfPrices)
+            {
+                comboBox4.Items.Add(m);
+            }
+            var allTypesOfPlastinka = b.getTypesOfPlastinka();
+            foreach (var m in allTypesOfPlastinka)
+            {
+                comboBox2.Items.Add(m);
+            }
             //var allTypesOfStatus = b.getTypesOfStatus();
             //foreach (var m in allTypesOfStatus)
             //{
