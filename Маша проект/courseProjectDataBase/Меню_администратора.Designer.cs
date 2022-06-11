@@ -100,7 +100,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(453, 327);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Человек";
+            this.tabPage1.Text = "Пластинка";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
@@ -185,9 +185,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(58, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 25);
+            this.label2.Size = new System.Drawing.Size(121, 25);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Фамилия";
+            this.label2.Text = "Исполнитель";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
@@ -196,9 +196,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(329, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 25);
+            this.label3.Size = new System.Drawing.Size(76, 25);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Имя";
+            this.label3.Text = "Альбом";
             // 
             // label4
             // 
@@ -206,9 +206,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(58, 109);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 25);
+            this.label4.Size = new System.Drawing.Size(167, 25);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Отчество";
+            this.label4.Text = "Размер пластинки";
             // 
             // label5
             // 
@@ -216,9 +216,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(329, 111);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 25);
+            this.label5.Size = new System.Drawing.Size(192, 25);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Пол";
+            this.label5.Text = "Время проигрывания";
             // 
             // label6
             // 
@@ -226,9 +226,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(29, 140);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 25);
+            this.label6.Size = new System.Drawing.Size(129, 25);
             this.label6.TabIndex = 20;
-            this.label6.Text = "Дата рождения";
+            this.label6.Text = "Дата выпуска";
             // 
             // label7
             // 
@@ -246,9 +246,9 @@
             this.label14.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(55, 393);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(106, 25);
+            this.label14.Size = new System.Drawing.Size(135, 25);
             this.label14.TabIndex = 28;
-            this.label14.Text = "Должность";
+            this.label14.Text = "Тип пластинки";
             // 
             // label15
             // 
@@ -256,9 +256,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(55, 418);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(129, 25);
+            this.label15.Size = new System.Drawing.Size(55, 25);
             this.label15.TabIndex = 29;
-            this.label15.Text = "Место работы";
+            this.label15.Text = "Цена";
             // 
             // label16
             // 
@@ -325,9 +325,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(56, 192);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 25);
+            this.label8.Size = new System.Drawing.Size(169, 25);
             this.label8.TabIndex = 22;
-            this.label8.Text = "АДРЕС";
+            this.label8.Text = "СТУДИЯ ЗАПИСИ";
             // 
             // label9
             // 
@@ -568,7 +568,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Меню_администратора";
-            this.Text = "Меню_читателя";
+            this.Text = "Меню_Администратор";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
