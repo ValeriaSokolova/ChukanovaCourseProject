@@ -26,16 +26,6 @@ namespace КП_БД
             {
                 comboBox2.Items.Add(m);
             }
-            //var allTypesOfStatus = b.getTypesOfStatus();
-            //foreach (var m in allTypesOfStatus)
-            //{
-            //    comboBox1.Items.Add(m);
-            //}
-            //var allTypesOfPhone = b.getTypesOfPhone();
-            //foreach (var m in allTypesOfPhone)
-            //{
-            //    comboBox3.Items.Add(m);
-            //}
             b.DisplayPlastinkaData(dataGridView1);
 
         }
