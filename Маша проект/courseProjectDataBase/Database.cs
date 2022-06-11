@@ -32,8 +32,6 @@ namespace КП_БД
                 connection.Close();
             }
         }
-
-
       
         public void DisplayPeopleDataAndStudioData(DataGridView dataGrid)
         {
@@ -64,7 +62,18 @@ namespace КП_БД
             }
         }
 
-
+        public void DisplayStudioData(DataGridView dataGrid)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                DataTable dt = new DataTable();
+                adapter = new SqlDataAdapter("SELECT * From СТУДИЯ", connectionString);
+                adapter.Fill(dt);
+                dataGrid.DataSource = dt;
+                connection.Close();
+            }
+        }
         public void DisplayPeopleInformAndWorkDataWithConditionHaving(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
