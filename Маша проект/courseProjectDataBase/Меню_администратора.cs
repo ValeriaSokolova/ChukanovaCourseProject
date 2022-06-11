@@ -60,8 +60,6 @@ namespace КП_БД
 
             int type = comboBox3.SelectedIndex + 1;
             string number = textBox12.Text;
-            b.AddNumber(number);
-            int number_id = b.getIdByNumber(number);
 
             int status_id = comboBox1.SelectedIndex + 1;
             int dolgn_id = comboBox2.SelectedIndex + 1;
@@ -69,7 +67,7 @@ namespace КП_БД
             DateTime date = new DateTime();
             date = DateTime.Parse(birthday);
 
-            b.AddHuman(sername, first_name, patronymic, sex, mr_id, dolgn_id, number_id, status_id, adres_id, date, dataGridView1);
+            b.AddHuman(sername, first_name, patronymic, sex, mr_id, dolgn_id, 1, status_id, adres_id, date, dataGridView1);
         }
     
 

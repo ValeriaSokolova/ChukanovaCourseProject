@@ -22,7 +22,6 @@ namespace КП_БД
         {
             b.DisplayPlastinkaInformAndPriceData(dataGridView1);
             b.DisplayPeopleDataAndAdressData(dataGridView2);
-            b.DisplayPeopleDataAndPhoneData(dataGridView3);
         }
     }
 }

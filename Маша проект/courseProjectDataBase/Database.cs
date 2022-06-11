@@ -34,18 +34,7 @@ namespace КП_БД
         }
 
 
-        public void DisplayPeopleDataAndPhoneData(DataGridView dataGrid)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, НОМЕР_ТЕЛЕФОНА.НОМЕР_ТЕЛЕФОНА, ТЕЛЕФОН.ТИП_ТЕЛЕФОНА FROM ПЛАСТИНКА INNER JOIN НОМЕР_ТЕЛЕФОНА ON ПЛАСТИНКА.НОМЕР_id = НОМЕР_ТЕЛЕФОНА.id_i INNER JOIN ТЕЛЕФОН ON ТЕЛЕФОН.id_t = НОМЕР_ТЕЛЕФОНА.id_i  ", connectionString); /// дописать джоин он по адресу и еще 1 по 
-                adapter.Fill(dt);
-                dataGrid.DataSource = dt;
-                connection.Close();
-            }
-        }
+      
         public void DisplayPeopleDataAndAdressData(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -92,43 +81,7 @@ namespace КП_БД
         }
 
 
-        //public void DisplayAdressData(DataGridView dataGrid)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        DataTable dt = new DataTable();
-        //        adapter = new SqlDataAdapter("select * from АДРЕС", connectionString);
-        //        adapter.Fill(dt);
-        //        dataGrid.DataSource = dt;
-        //        connection.Close();
-        //    }
-        //}
-
-        //public void DisplayTelephoneData(DataGridView dataGrid)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        DataTable dt = new DataTable();
-        //        adapter = new SqlDataAdapter("select * from НОМЕР_ТЕЛЕФОНА", connectionString);
-        //        adapter.Fill(dt);
-        //        dataGrid.DataSource = dt;
-        //        connection.Close();
-        //    }
-        //}
-        //public void DisplayHuman(DataGridView dataGrid)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        DataTable dt = new DataTable();
-        //        adapter = new SqlDataAdapter("select * from ПЛАСТИНКА", connectionString);
-        //        adapter.Fill(dt);
-        //        dataGrid.DataSource = dt;
-        //        connection.Close();
-        //    }
-        //}
+    
         public List<string> getTypesOfPrices()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -258,8 +211,6 @@ namespace КП_БД
                     "INNER JOIN  МЕСТО_РАБОТЫ ON ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
                     "INNER JOIN АДРЕС ON ПЛАСТИНКА.АДРЕС_id = АДРЕС.id_h " +
                     "INNER JOIN СТАТУС ON ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c " +
-                    "INNER JOIN НОМЕР_ТЕЛЕФОНА ON ПЛАСТИНКА.НОМЕР_id = НОМЕР_ТЕЛЕФОНА.id_i " +
-                    "INNER JOIN ТЕЛЕФОН ON НОМЕР_ТЕЛЕФОНА.id_i = ТЕЛЕФОН.id_t " +
                     "AND ЧЕЛОВЕК.id_p = " + id, connection);
 
 
@@ -281,8 +232,6 @@ namespace КП_БД
                     list.Add(Convert.ToString(dr["ИНДЕКС"]));
                     list.Add(Convert.ToString(dr["КВАРТИРА"]));
                     list.Add(Convert.ToString(dr["СТАТУС"]));
-                    list.Add(Convert.ToString(dr["НОМЕР_ТЕЛЕФОНА"]));
-                    list.Add(Convert.ToString(dr["ТИП_ТЕЛЕФОНА"]));
                 }
                 connection.Close();
                 return list;
@@ -338,31 +287,7 @@ namespace КП_БД
                 return -1;
             }
         }
-        public int getIdByNumber(string number)
-        {
-            if (number != "")
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    adapter = new SqlDataAdapter(
-                       "select id_i from НОМЕР_ТЕЛЕФОНА where НОМЕР_ТЕЛЕФОНА = '" + number + "'", connection);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        connection.Close();
-                        return (Convert.ToInt32(dr["id_i"]));
-                    }
-                    return -1;
-                 
-                }
-            }
-            else
-            {
-                MessageBox.Show("Введите данные");
-                return -1;
-            }
-        }
+       
         public void AddAdress(string sity, int home, string street, int index, int flat)
         {
             if (sity != "" && street != "")
@@ -388,26 +313,7 @@ namespace КП_БД
                 MessageBox.Show("Введите данные");
             }
         }
-        public void AddNumber(string number)
-        {
-            if (number != "")
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    cmd = new SqlCommand(
-                        "insert into НОМЕР_ТЕЛЕФОНА (НОМЕР_ТЕЛЕФОНА) values(@НОМЕР_ТЕЛЕФОНА)", connection);
-                    connection.Open();
-                    cmd.Parameters.AddWithValue("@НОМЕР_ТЕЛЕФОНА", number);
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Введите данные");
-            }
-        }
+        
         public void DeleteAdressById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -421,19 +327,7 @@ namespace КП_БД
 
             }
         }
-        public void DeletePhoneNumberById(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                cmd = new SqlCommand(
-                    "delete from НОМЕР_ТЕЛЕФОНА where id_i = @id", connection);
-                connection.Open();
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-
-            }
-        }
+        
         public int getAdressIdByHumanId(int humanId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -451,23 +345,7 @@ namespace КП_БД
 
             }
         }
-        public int getPhoneNumberIdByHumanId(int humanId)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                adapter = new SqlDataAdapter(
-                   "select * from ПЛАСТИНКА where id_p = " + humanId, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    connection.Close();
-                    return (Convert.ToInt32(dr["НОМЕР_ID"]));
-                }
-                return -1;
-
-            }
-        }
+       
         public void DisplayPeopleInformAndWorkDataWithName(DataGridView dataGrid, string name)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -501,7 +379,6 @@ namespace КП_БД
         public void DeleteHumanByID(int id, DataGridView dataGrid)
         {
             int adressId= getAdressIdByHumanId(id);
-            int phoneNumberId= getPhoneNumberIdByHumanId(id);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 cmd = new SqlCommand(
@@ -513,8 +390,6 @@ namespace КП_БД
 
             }
             DeleteAdressById(adressId);
-            DeletePhoneNumberById(phoneNumberId);
-            //DisplayPeopleData(dataGrid);
         }
     }
 }
