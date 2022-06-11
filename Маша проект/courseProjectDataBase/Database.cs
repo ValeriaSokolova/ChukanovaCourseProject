@@ -20,6 +20,9 @@ namespace КП_БД
 
 
         private string connectionString = @"Data Source = HOME-PC\SQLEXPRESS; Initial Catalog = Музыкальный_магазин;Integrated Security = True;";
+
+
+        // методы формы клиента
         public void DisplayPlastinkaData(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -74,6 +77,18 @@ namespace КП_БД
                 connection.Close();
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+        // методы формы администратора
         public void DisplayPeopleInformAndWorkDataWithConditionHaving(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -82,7 +97,7 @@ namespace КП_БД
                 DataTable dt = new DataTable();
                 DateTime date = new DateTime();
                 date = DateTime.Parse("2002.01.01");
-                adapter = new SqlDataAdapter("SELECT ФАМИЛИЯ, COUNT(ФАМИЛИЯ) AS КОЛИЧЕСТВО FROM ПЛАСТИНКА GROUP BY ФАМИЛИЯ HAVING ФАМИЛИЯ = 'Астахов' ", connectionString);
+                adapter = new SqlDataAdapter("SELECT ИСПОЛНИТЕЛЬ, COUNT(ИСПОЛНИТЕЛЬ) AS КОЛИЧЕСТВО FROM ПЛАСТИНКА GROUP BY ИСПОЛНИТЕЛЬ HAVING ИСПОЛНИТЕЛЬ = 'Басков' ", connectionString);
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -128,65 +143,28 @@ namespace КП_БД
                 return s;
             }
         }
-        public List<string> getTypesOfStatus()
+        public void AddPlastinka(string singer, string albom,  string size, string time, int price_ID, int typePlId, int studioID, DateTime date, DataGridView dataGrid)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                int n = 3;
-                List<string> s = new List<string>();
-                DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("select * from СТАТУС", connectionString);
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    s.Add(Convert.ToString(dr["СТАТУС"]));
-                }
-                connection.Close();
-                return s;
-            }
-        }
-        public List<string> getTypesOfPhone()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                int n = 5;
-                List<string> s = new List<string>();
-                DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("select * from ТЕЛЕФОН", connectionString);
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    s.Add(Convert.ToString(dr["ТИП_ТЕЛЕФОНА"]));
-                }
-                connection.Close();
-                return s;
-            }
-        }
-        public void AddHuman(string sername, string first_name,  string patronymic, string sex, int mrID, int dolgID, int numTelID, int statusID, int adressID, DateTime date, DataGridView dataGrid)
-        {
-            if (first_name != "" && sername != "")
+            if (singer != "" && albom != "")
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     cmd = new SqlCommand(
-                        "insert into ПЛАСТИНКА (ФАМИЛИЯ, ИМЯ, ОТЧЕСТВО, ПОЛ, ДАТА_РОЖДЕНИЯ, МЕСТО_РАБОТЫ_id, ДОЛЖНОСТЬ_ID, НОМЕР_ID, СТАТУС_ID, АДРЕС_ID) values(@ФАМИЛИЯ, @ИМЯ, @ОТЧЕСТВО, @ПОЛ,  @ДАТА_РОЖДЕНИЯ, @МЕСТО_РАБОТЫ_id, @ДОЛЖНОСТЬ_ID, @НОМЕР_ID, @СТАТУС_ID, @АДРЕС_ID)", connection);
+                        "insert into ПЛАСТИНКА (ИСПОЛНИТЕЛЬ, АЛЬБОМ, РАЗМЕР_ПЛАСТИНКИ, ВРЕМЯ_ПРОИГРЫВАНИЯ, ДАТА_ВЫПУСКА, ЦЕНА_id, ТИП_ПЛАСТИНКИ_ID, " +
+                        "СТУДИЯ_id) values(@ИСПОЛНИТЕЛЬ, @АЛЬБОМ, @РАЗМЕР_ПЛАСТИНКИ, @ВРЕМЯ_ПРОИГРЫВАНИЯ,  @ДАТА_ВЫПУСКА, @ЦЕНА_id, " +
+                        "@ТИП_ПЛАСТИНКИ_ID, @СТУДИЯ_id)", connection);
                     connection.Open();
-                    cmd.Parameters.AddWithValue("@ФАМИЛИЯ", sername);
-                    cmd.Parameters.AddWithValue("@ИМЯ", first_name);
-                    cmd.Parameters.AddWithValue("@ОТЧЕСТВО", patronymic);
-                    cmd.Parameters.AddWithValue("@ПОЛ", sex);
-                    cmd.Parameters.AddWithValue("@ДАТА_РОЖДЕНИЯ", date);
-                    cmd.Parameters.AddWithValue("@МЕСТО_РАБОТЫ_id", mrID);
-                    cmd.Parameters.AddWithValue("@ДОЛЖНОСТЬ_ID", dolgID);
-                    cmd.Parameters.AddWithValue("@НОМЕР_ID", numTelID);
-                    cmd.Parameters.AddWithValue("@СТАТУС_ID", statusID);
-                    cmd.Parameters.AddWithValue("@АДРЕС_ID", adressID);
+                    cmd.Parameters.AddWithValue("@ИСПОЛНИТЕЛЬ", singer);
+                    cmd.Parameters.AddWithValue("@АЛЬБОМ", albom);
+                    cmd.Parameters.AddWithValue("@РАЗМЕР_ПЛАСТИНКИ", size);
+                    cmd.Parameters.AddWithValue("@ВРЕМЯ_ПРОИГРЫВАНИЯ", time);
+                    cmd.Parameters.AddWithValue("@ДАТА_ВЫПУСКА", date);
+                    cmd.Parameters.AddWithValue("@ЦЕНА_id", price_ID);
+                    cmd.Parameters.AddWithValue("@ТИП_ПЛАСТИНКИ_ID", typePlId);
+                    cmd.Parameters.AddWithValue("@СТУДИЯ_id", studioID);
                     cmd.ExecuteNonQuery();
                     connection.Close();
                     MessageBox.Show("Добавлено");
-                    //DisplayPeopleData(dataGrid);
 
                 }
             }
