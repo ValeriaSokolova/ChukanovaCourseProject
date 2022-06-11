@@ -41,9 +41,9 @@
             this.label1.Font = new System.Drawing.Font("Myanmar Text", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(165, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(363, 50);
+            this.label1.Size = new System.Drawing.Size(457, 50);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ЗАПИСНАЯ КНИЖКА";
+            this.label1.Text = "МУЗЫКАЛЬНЫЙ МАГАЗИН";
             // 
             // label2
             // 
@@ -61,9 +61,9 @@
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox1.Location = new System.Drawing.Point(224, 142);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(194, 33);
+            this.checkBox1.Size = new System.Drawing.Size(117, 33);
             this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Пользователь";
+            this.checkBox1.Text = "Клиент";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBox2
