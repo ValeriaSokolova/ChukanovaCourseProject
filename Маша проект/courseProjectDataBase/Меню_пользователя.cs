@@ -21,7 +21,7 @@ namespace КП_БД
         private void button1_Click(object sender, EventArgs e)
         {
             b.DisplayPlastinkaInformAndPriceData(dataGridView1);
-            b.DisplayPeopleDataAndAdressData(dataGridView2);
+            b.DisplayPeopleDataAndStudioData(dataGridView2);
         }
     }
 }

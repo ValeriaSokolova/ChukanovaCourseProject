@@ -35,14 +35,14 @@ namespace КП_БД
 
 
       
-        public void DisplayPeopleDataAndAdressData(DataGridView dataGrid)
+        public void DisplayPeopleDataAndStudioData(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, АДРЕС.ГОРОД, АДРЕС.ДОМ, АДРЕС.ИНДЕКС, АДРЕС.КВАРТИРА, АДРЕС.УЛИЦА   " +
-                    "FROM ПЛАСТИНКА INNER JOIN АДРЕС ON ПЛАСТИНКА.АДРЕС_ID = АДРЕС.id_h", connectionString); /// дописать джоин он по адресу и еще 1 п
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, СТУДИЯ.НАЗВАНИЕ, СТУДИЯ.ГОРОД, СТУДИЯ.ДОМ, СТУДИЯ.ИНДЕКС, СТУДИЯ.КВАРТИРА, СТУДИЯ.УЛИЦА   " +
+                    "FROM ПЛАСТИНКА INNER JOIN СТУДИЯ ON ПЛАСТИНКА.СТУДИЯ_id = СТУДИЯ.id", connectionString); /// дописать джоин он по адресу и еще 1 п
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
