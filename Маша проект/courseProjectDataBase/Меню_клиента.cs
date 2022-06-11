@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace КП_БД
 {
-    public partial class Меню_пользователя : Form
+    public partial class Меню_клиента : Form
     {
             Database b = new Database();
-        public Меню_пользователя()
+        public Меню_клиента()
         {
             InitializeComponent();
         }

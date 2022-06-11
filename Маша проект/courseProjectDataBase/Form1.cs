@@ -21,7 +21,7 @@ namespace КП_БД
         {
             if (checkBox1.Checked)
             {
-                Меню_пользователя f = new Меню_пользователя();
+                Меню_клиента f = new Меню_клиента();
                 f.Show();
             }
             if (checkBox2.Checked)
