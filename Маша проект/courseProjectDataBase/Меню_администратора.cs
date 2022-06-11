@@ -156,5 +156,10 @@ namespace КП_БД
         {
             b.DisplayPeopleInformAndWorkDataWithConditionHaving(dataGridView1);
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
