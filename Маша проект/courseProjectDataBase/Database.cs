@@ -59,17 +59,16 @@ namespace КП_БД
                 connection.Close();
             }
         }
-        public void DisplayPeopleInformAndWorkData(DataGridView dataGrid)
+        public void DisplayPlastinkaInformAndPriceData(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ОТЧЕСТВО, ЧЕЛОВЕК.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ЧЕЛОВЕК INNER JOIN ДОЛЖНОСТЬ ON ЧЕЛОВЕК.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ЧЕЛОВЕК.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN СТАТУС ON  ЧЕЛОВЕК.СТАТУС_id = СТАТУС.id_c " +
-                    "Order by ЧЕЛОВЕК.ФАМИЛИЯ ", connectionString); /// дописать джоин он по адресу и еще 1 по 
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, " +
+                    "ЦЕНА.ЦЕНА FROM ПЛАСТИНКА INNER JOIN ТИП_ПЛАСТИНКИ ON ПЛАСТИНКА.ТИП_ПЛАСТИНКИ_id = ТИП_ПЛАСТИНКИ.id " +
+                    "INNER JOIN  ЦЕНА ON  ПЛАСТИНКА.ЦЕНА_id = ЦЕНА.id_m " +
+                    "Order by ПЛАСТИНКА.ИСПОЛНИТЕЛЬ ", connectionString); /// дописать джоин он по адресу и еще 1 по 
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();

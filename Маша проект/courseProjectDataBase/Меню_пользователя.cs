@@ -20,7 +20,7 @@ namespace КП_БД
 
         private void button1_Click(object sender, EventArgs e)
         {
-            b.DisplayPeopleInformAndWorkData(dataGridView1);
+            b.DisplayPlastinkaInformAndPriceData(dataGridView1);
             b.DisplayPeopleDataAndAdressData(dataGridView2);
             b.DisplayPeopleDataAndPhoneData(dataGridView3);
         }

@@ -77,7 +77,7 @@ namespace КП_БД
         // показать записи
         private void button1_Click(object sender, EventArgs e)
         {
-            b.DisplayPeopleInformAndWorkData(dataGridView1);
+            b.DisplayPlastinkaInformAndPriceData(dataGridView1);
         }
         // поиск по разным
         private void button5_Click(object sender, EventArgs e)
