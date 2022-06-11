@@ -40,7 +40,7 @@ namespace КП_БД
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ОТЧЕСТВО, НОМЕР_ТЕЛЕФОНА.НОМЕР_ТЕЛЕФОНА, ТЕЛЕФОН.ТИП_ТЕЛЕФОНА FROM ЧЕЛОВЕК INNER JOIN НОМЕР_ТЕЛЕФОНА ON ЧЕЛОВЕК.НОМЕР_id = НОМЕР_ТЕЛЕФОНА.id_i INNER JOIN ТЕЛЕФОН ON ТЕЛЕФОН.id_t = НОМЕР_ТЕЛЕФОНА.id_i  ", connectionString); /// дописать джоин он по адресу и еще 1 по 
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, НОМЕР_ТЕЛЕФОНА.НОМЕР_ТЕЛЕФОНА, ТЕЛЕФОН.ТИП_ТЕЛЕФОНА FROM ПЛАСТИНКА INNER JOIN НОМЕР_ТЕЛЕФОНА ON ПЛАСТИНКА.НОМЕР_id = НОМЕР_ТЕЛЕФОНА.id_i INNER JOIN ТЕЛЕФОН ON ТЕЛЕФОН.id_t = НОМЕР_ТЕЛЕФОНА.id_i  ", connectionString); /// дописать джоин он по адресу и еще 1 по 
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -52,8 +52,8 @@ namespace КП_БД
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ОТЧЕСТВО, АДРЕС.ГОРОД, АДРЕС.ДОМ, АДРЕС.ИНДЕКС, АДРЕС.КВАРТИРА, АДРЕС.УЛИЦА   " +
-                    "FROM ЧЕЛОВЕК INNER JOIN АДРЕС ON ЧЕЛОВЕК.АДРЕС_ID = АДРЕС.id_h", connectionString); /// дописать джоин он по адресу и еще 1 п
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, АДРЕС.ГОРОД, АДРЕС.ДОМ, АДРЕС.ИНДЕКС, АДРЕС.КВАРТИРА, АДРЕС.УЛИЦА   " +
+                    "FROM ПЛАСТИНКА INNER JOIN АДРЕС ON ПЛАСТИНКА.АДРЕС_ID = АДРЕС.id_h", connectionString); /// дописать джоин он по адресу и еще 1 п
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -84,7 +84,7 @@ namespace КП_БД
                 DataTable dt = new DataTable();
                 DateTime date = new DateTime();
                 date = DateTime.Parse("2002.01.01");
-                adapter = new SqlDataAdapter("SELECT ФАМИЛИЯ, COUNT(ФАМИЛИЯ) AS КОЛИЧЕСТВО FROM ЧЕЛОВЕК GROUP BY ФАМИЛИЯ HAVING ФАМИЛИЯ = 'Астахов' ", connectionString);
+                adapter = new SqlDataAdapter("SELECT ФАМИЛИЯ, COUNT(ФАМИЛИЯ) AS КОЛИЧЕСТВО FROM ПЛАСТИНКА GROUP BY ФАМИЛИЯ HAVING ФАМИЛИЯ = 'Астахов' ", connectionString);
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -123,7 +123,7 @@ namespace КП_БД
         //    {
         //        connection.Open();
         //        DataTable dt = new DataTable();
-        //        adapter = new SqlDataAdapter("select * from ЧЕЛОВЕК", connectionString);
+        //        adapter = new SqlDataAdapter("select * from ПЛАСТИНКА", connectionString);
         //        adapter.Fill(dt);
         //        dataGrid.DataSource = dt;
         //        connection.Close();
@@ -209,7 +209,7 @@ namespace КП_БД
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     cmd = new SqlCommand(
-                        "insert into ЧЕЛОВЕК (ФАМИЛИЯ, ИМЯ, ОТЧЕСТВО, ПОЛ, ДАТА_РОЖДЕНИЯ, МЕСТО_РАБОТЫ_id, ДОЛЖНОСТЬ_ID, НОМЕР_ID, СТАТУС_ID, АДРЕС_ID) values(@ФАМИЛИЯ, @ИМЯ, @ОТЧЕСТВО, @ПОЛ,  @ДАТА_РОЖДЕНИЯ, @МЕСТО_РАБОТЫ_id, @ДОЛЖНОСТЬ_ID, @НОМЕР_ID, @СТАТУС_ID, @АДРЕС_ID)", connection);
+                        "insert into ПЛАСТИНКА (ФАМИЛИЯ, ИМЯ, ОТЧЕСТВО, ПОЛ, ДАТА_РОЖДЕНИЯ, МЕСТО_РАБОТЫ_id, ДОЛЖНОСТЬ_ID, НОМЕР_ID, СТАТУС_ID, АДРЕС_ID) values(@ФАМИЛИЯ, @ИМЯ, @ОТЧЕСТВО, @ПОЛ,  @ДАТА_РОЖДЕНИЯ, @МЕСТО_РАБОТЫ_id, @ДОЛЖНОСТЬ_ID, @НОМЕР_ID, @СТАТУС_ID, @АДРЕС_ID)", connection);
                     connection.Open();
                     cmd.Parameters.AddWithValue("@ФАМИЛИЯ", sername);
                     cmd.Parameters.AddWithValue("@ИМЯ", first_name);
@@ -251,14 +251,14 @@ namespace КП_БД
                     "INNER JOIN СТАТУС ON  ЧЕЛОВЕК.СТАТУС_id = СТАТУС.id_c
                  */
                 //, СТАТУС.СТАТУС
-                adapter = new SqlDataAdapter("select ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ОТЧЕСТВО, ЧЕЛОВЕК.ДАТА_РОЖДЕНИЯ, ЧЕЛОВЕК.ПОЛ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, НОМЕР_ТЕЛЕФОНА.НОМЕР_ТЕЛЕФОНА, " +
+                adapter = new SqlDataAdapter("select ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, ПЛАСТИНКА.ДАТА_РОЖДЕНИЯ, ПЛАСТИНКА.ПОЛ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, НОМЕР_ТЕЛЕФОНА.НОМЕР_ТЕЛЕФОНА, " +
                     "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, АДРЕС.ГОРОД, АДРЕС.ИНДЕКС, АДРЕС.УЛИЦА, АДРЕС.ДОМ, АДРЕС.КВАРТИРА, СТАТУС.СТАТУС, ТЕЛЕФОН.ТИП_ТЕЛЕФОНА " +
-                    "from ЧЕЛОВЕК " +
-                    "INNER JOIN ДОЛЖНОСТЬ ON ЧЕЛОВЕК.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON ЧЕЛОВЕК.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN АДРЕС ON ЧЕЛОВЕК.АДРЕС_id = АДРЕС.id_h " +
-                    "INNER JOIN СТАТУС ON ЧЕЛОВЕК.СТАТУС_id = СТАТУС.id_c " +
-                    "INNER JOIN НОМЕР_ТЕЛЕФОНА ON ЧЕЛОВЕК.НОМЕР_id = НОМЕР_ТЕЛЕФОНА.id_i " +
+                    "from ПЛАСТИНКА " +
+                    "INNER JOIN ДОЛЖНОСТЬ ON ПЛАСТИНКА.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
+                    "INNER JOIN  МЕСТО_РАБОТЫ ON ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
+                    "INNER JOIN АДРЕС ON ПЛАСТИНКА.АДРЕС_id = АДРЕС.id_h " +
+                    "INNER JOIN СТАТУС ON ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c " +
+                    "INNER JOIN НОМЕР_ТЕЛЕФОНА ON ПЛАСТИНКА.НОМЕР_id = НОМЕР_ТЕЛЕФОНА.id_i " +
                     "INNER JOIN ТЕЛЕФОН ON НОМЕР_ТЕЛЕФОНА.id_i = ТЕЛЕФОН.id_t " +
                     "AND ЧЕЛОВЕК.id_p = " + id, connection);
 
@@ -296,7 +296,7 @@ namespace КП_БД
             {
                 List<string> list = new List<string>();
                 DataTable dt = new DataTable();
-                cmd = new SqlCommand("select * from ЧЕЛОВЕК where ИМЯ = '"+name+" '", connection);
+                cmd = new SqlCommand("select * from ПЛАСТИНКА where ИМЯ = '" + name+" '", connection);
                 cmd.Parameters.AddWithValue("@id", name);
                 cmd.ExecuteNonQuery();
                 adapter.Fill(dt);
@@ -439,7 +439,7 @@ namespace КП_БД
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 adapter = new SqlDataAdapter(
-                   "select * from ЧЕЛОВЕК where id_p = "+ humanId, connection);
+                   "select * from ПЛАСТИНКА where id_p = " + humanId, connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
@@ -456,7 +456,7 @@ namespace КП_БД
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 adapter = new SqlDataAdapter(
-                   "select * from ЧЕЛОВЕК where id_p = "+ humanId, connection);
+                   "select * from ПЛАСТИНКА where id_p = " + humanId, connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
@@ -474,10 +474,10 @@ namespace КП_БД
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ОТЧЕСТВО, ЧЕЛОВЕК.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ЧЕЛОВЕК INNER JOIN ДОЛЖНОСТЬ ON ЧЕЛОВЕК.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ЧЕЛОВЕК.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN СТАТУС ON  ЧЕЛОВЕК.СТАТУС_id = СТАТУС.id_c AND ЧЕЛОВЕК.ИМЯ = '" +name+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, ПЛАСТИНКА.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
+                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ПЛАСТИНКА INNER JOIN ДОЛЖНОСТЬ ON ПЛАСТИНКА.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
+                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
+                    "INNER JOIN СТАТУС ON  ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c AND ПЛАСТИНКА.ИМЯ = '" + name+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -489,10 +489,10 @@ namespace КП_БД
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ОТЧЕСТВО, ЧЕЛОВЕК.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ЧЕЛОВЕК INNER JOIN ДОЛЖНОСТЬ ON ЧЕЛОВЕК.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ЧЕЛОВЕК.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN СТАТУС ON  ЧЕЛОВЕК.СТАТУС_id = СТАТУС.id_c AND ЧЕЛОВЕК.ФАМИЛИЯ = '" + sername+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, ПЛАСТИНКА.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
+                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ПЛАСТИНКА INNER JOIN ДОЛЖНОСТЬ ON ПЛАСТИНКА.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
+                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
+                    "INNER JOIN СТАТУС ON  ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c AND ПЛАСТИНКА.ФАМИЛИЯ = '" + sername+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -505,7 +505,7 @@ namespace КП_БД
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 cmd = new SqlCommand(
-                    "delete from ЧЕЛОВЕК where id_p = @id", connection);
+                    "delete from ПЛАСТИНКА where id_p = @id", connection);
                 connection.Open();
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
