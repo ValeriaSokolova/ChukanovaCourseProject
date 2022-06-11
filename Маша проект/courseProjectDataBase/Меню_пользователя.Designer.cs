@@ -77,7 +77,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(878, 484);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Человек";
+            this.tabPage1.Text = "Пластинки";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
@@ -98,7 +98,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(878, 484);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Адрес";
+            this.tabPage2.Text = "Пластинка с информацией о студии";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
@@ -118,7 +118,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(878, 484);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Номер телефона";
+            this.tabPage3.Text = "Информация о студии звукозаписи";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dataGridView3
@@ -134,7 +134,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(540, 584);
+            this.button1.Location = new System.Drawing.Point(310, 595);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(399, 48);
             this.button1.TabIndex = 3;
@@ -151,7 +151,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Меню_пользователя";
-            this.Text = "Меню_пользователя";
+            this.Text = "Меню_клиента";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
