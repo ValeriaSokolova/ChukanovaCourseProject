@@ -40,24 +40,25 @@ namespace КП_БД
             string startDate = textBox6.Text;
 
 
-            //string sity = textBox7.Text;
-            //int home = Convert.ToInt32(textBox8.Text);
-            //string street = textBox9.Text;
-            //int index = Convert.ToInt32(textBox10.Text);
-            //int flat = Convert.ToInt32(textBox11.Text);
-            //b.AddAdress(sity, home, street, index, flat);
-            //int adres_id = b.getAdressId(sity, home, street, index, flat);
+            string sity = textBox7.Text;
+            int home = Convert.ToInt32(textBox8.Text);
+            string street = textBox9.Text;
+            int index = Convert.ToInt32(textBox10.Text);
+            int flat = Convert.ToInt32(textBox11.Text);
+            string nameOfStudio = textBox12.Text;
+            b.AddStudio(sity, home, street, index, flat,nameOfStudio);
+            int studio_id = b.getStudioId(sity, home, street, index, flat);
 
-          
 
 
-           
-            //int dolgn_id = comboBox2.SelectedIndex + 1;
-            //int mr_id = comboBox4.SelectedIndex + 1;
+
+
+            int typeOfPlastinka = comboBox2.SelectedIndex + 1;
+            int price = comboBox4.SelectedIndex + 1;
             DateTime date = new DateTime();
             date = DateTime.Parse(startDate);
 
-            b.AddPlastinka(albom, singer, size, time, 1, 1, 1, date, dataGridView1);
+            b.AddPlastinka(albom, singer, size, time, price, typeOfPlastinka, studio_id, date, dataGridView1);
         }
     
 
@@ -73,12 +74,12 @@ namespace КП_БД
             if(radioButton1.Checked)
             {
                 string name = textBox13.Text;
-                b.DisplayPeopleInformAndWorkDataWithName(dataGridView1,name);
+                b.DisplayPlastinkaByAlbom(dataGridView1,name);
             }
             else if (radioButton2.Checked)
             {
-                string sername = textBox14.Text;
-                b.DisplayPeopleInformAndWorkDataWithSername(dataGridView1, sername);
+                string singer = textBox14.Text;
+                b.DisplayPlastinkaBySinger(dataGridView1, singer);
             }
             else
             {
@@ -116,7 +117,7 @@ namespace КП_БД
                 string street = textBox9.Text;
                 int index = Convert.ToInt32(textBox10.Text);
                 int flat = Convert.ToInt32(textBox11.Text);
-                b.AddAdress(sity, home, street, index, flat);
+               // b.AddAdress(sity, home, street, index, flat);
             }
             else if (tabControl1.SelectedIndex == 2)
             {

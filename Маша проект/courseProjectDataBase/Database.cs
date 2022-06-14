@@ -249,20 +249,20 @@ namespace КП_БД
 
             }
         }
-        public int getAdressId(string sity, int home, string street, int index, int flat)
+        public int getStudioId(string sity, int home, string street, int index, int flat)
         {
             if (sity != "" && street != "" )
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     adapter = new SqlDataAdapter(
-                       "select id_h from АДРЕС where ГОРОД = '"+ sity + "' and ИНДЕКС = " + index + " and УЛИЦА = '" + street + "' and ДОМ = " + home + " and КВАРТИРА = " + flat, connection);
+                       "select id from СТУДИЯ where ГОРОД = '"+ sity + "' and ИНДЕКС = " + index + " and УЛИЦА = '" + street + "' and ДОМ = " + home + " and КВАРТИРА = " + flat, connection);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
                     foreach (DataRow dr in dt.Rows)
                     {
                         connection.Close();
-                        return (Convert.ToInt32(dr["id_h"]));
+                        return (Convert.ToInt32(dr["id"]));
                     }
                     return -1;
                  
@@ -275,15 +275,16 @@ namespace КП_БД
             }
         }
        
-        public void AddAdress(string sity, int home, string street, int index, int flat)
+        public void AddStudio(string sity, int home, string street, int index, int flat, string nameOfstudio)
         {
             if (sity != "" && street != "")
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     cmd = new SqlCommand(
-                        "insert into АДРЕС (ГОРОД,ИНДЕКС,УЛИЦА,ДОМ,КВАРТИРА) values(@ГОРОД,@ИНДЕКС,@УЛИЦА,@ДОМ,@КВАРТИРА)", connection);
+                        "insert into СТУДИЯ (НАЗВАНИЕ,ГОРОД,ИНДЕКС,УЛИЦА,ДОМ,КВАРТИРА) values(@НАЗВАНИЕ,@ГОРОД,@ИНДЕКС,@УЛИЦА,@ДОМ,@КВАРТИРА)", connection);
                     connection.Open();
+                    cmd.Parameters.AddWithValue("@НАЗВАНИЕ", nameOfstudio);
                     cmd.Parameters.AddWithValue("@ГОРОД", sity);
                     cmd.Parameters.AddWithValue("@ИНДЕКС", index);
                     cmd.Parameters.AddWithValue("@УЛИЦА", street);
@@ -333,31 +334,30 @@ namespace КП_БД
             }
         }
        
-        public void DisplayPeopleInformAndWorkDataWithName(DataGridView dataGrid, string name)
+        public void DisplayPlastinkaByAlbom(DataGridView dataGrid, string albom)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, ПЛАСТИНКА.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ПЛАСТИНКА INNER JOIN ДОЛЖНОСТЬ ON ПЛАСТИНКА.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN СТАТУС ON  ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c AND ПЛАСТИНКА.ИМЯ = '" + name+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, " +
+                    "ЦЕНА.ЦЕНА FROM ПЛАСТИНКА INNER JOIN ТИП_ПЛАСТИНКИ ON ПЛАСТИНКА.ТИП_ПЛАСТИНКИ_id = ТИП_ПЛАСТИНКИ.id " +
+                    "INNER JOIN  ЦЕНА ON  ПЛАСТИНКА.ЦЕНА_id = ЦЕНА.id_m " +
+                    "AND ПЛАСТИНКА.АЛЬБОМ = '" + albom + "'", connectionString);
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
             }
         }
-        public void DisplayPeopleInformAndWorkDataWithSername(DataGridView dataGrid, string sername)
+        public void DisplayPlastinkaBySinger(DataGridView dataGrid, string singer)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, ПЛАСТИНКА.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ПЛАСТИНКА INNER JOIN ДОЛЖНОСТЬ ON ПЛАСТИНКА.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN СТАТУС ON  ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c AND ПЛАСТИНКА.ФАМИЛИЯ = '" + sername+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, " +
+                    "ЦЕНА.ЦЕНА FROM ПЛАСТИНКА INNER JOIN ТИП_ПЛАСТИНКИ ON ПЛАСТИНКА.ТИП_ПЛАСТИНКИ_id = ТИП_ПЛАСТИНКИ.id " +
+                    "INNER JOIN  ЦЕНА ON  ПЛАСТИНКА.ЦЕНА_id = ЦЕНА.id_m AND ПЛАСТИНКА.ИСПОЛНИТЕЛЬ = '" + singer+"'", connectionString); /// дописать джоин он по адресу и еще 1 по 
                 adapter.Fill(dt);
                 dataGrid.DataSource = dt;
                 connection.Close();
@@ -377,6 +377,79 @@ namespace КП_БД
 
             }
             DeleteAdressById(adressId);
+        }
+        public void ExportExcel(DataGridView dataGrid)
+        {
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            // создаем новый WorkBook
+            Microsoft.Office.Interop.Excel._Workbook workbook =
+            app.Workbooks.Add(Type.Missing);
+            // новый Excelsheet в workbook
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            app.Visible = true;
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // задаем имя для worksheet
+            worksheet.Name = "Exported from gridview";
+            for (int i = 1; i < dataGrid.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dataGrid.Columns[i - 1].HeaderText;
+            }
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < dataGrid.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] =
+                    dataGrid.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+        }
+        public void ExportWord(DataGridView DGV)
+        {
+            if (DGV.Rows.Count != 0)
+            {
+                int RowCount = DGV.Rows.Count;
+                int ColumnCount = DGV.Columns.Count;
+                Object[,] DataArray = new object[RowCount + 1, ColumnCount + 1];
+                //добавим поля и колонки
+                int r = 0;
+                for (int c = 0; c <= ColumnCount - 1; c++)
+                {
+                    for (r = 0; r <= RowCount - 1; r++)
+                    {
+                        DataArray[r, c] = DGV.Rows[r].Cells[c].Value;
+                    }
+                }
+                Microsoft.Office.Interop.Word.Document oDoc = new
+                Microsoft.Office.Interop.Word.Document();
+                oDoc.Application.Visible = true;
+                //страницы
+                oDoc.PageSetup.Orientation =
+                Microsoft.Office.Interop.Word.WdOrientation.wdOrientLandscape;
+                dynamic oRange = oDoc.Content.Application.Selection.Range;
+                string oTemp = "";
+                for (r = 0; r <= RowCount - 1; r++)
+                {
+                    for (int c = 0; c <= ColumnCount - 1; c++)
+                    {
+                        oTemp = oTemp + DataArray[r, c] + "\t";
+                    }
+                }
+                //формат таблиц
+                oRange.Text = oTemp;
+                object Separator =
+                Microsoft.Office.Interop.Word.WdTableFieldSeparator.wdSeparateByTabs;
+                object ApplyBorders = true;
+                object AutoFit = true;
+                object AutoFitBehavior =
+                Microsoft.Office.Interop.Word.WdAutoFitBehavior.wdAutoFitContent;
+                oRange.ConvertToTable(ref Separator, ref RowCount, ref ColumnCount,
+                Type.Missing, Type.Missing, ref ApplyBorders,
+                Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, ref AutoFit, ref AutoFitBehavior,
+                oRange.Select());
+            }
         }
     }
 }

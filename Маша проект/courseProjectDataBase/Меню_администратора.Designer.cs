@@ -162,11 +162,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(504, 497);
+            this.label1.Location = new System.Drawing.Point(524, 497);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 25);
+            this.label1.Size = new System.Drawing.Size(122, 25);
             this.label1.TabIndex = 15;
-            this.label1.Text = "ID человека";
+            this.label1.Text = "ID пластинки";
             // 
             // label2
             // 
@@ -380,23 +380,23 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(537, 587);
+            this.radioButton1.Location = new System.Drawing.Point(475, 588);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(90, 20);
+            this.radioButton1.Size = new System.Drawing.Size(174, 20);
             this.radioButton1.TabIndex = 36;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "По имени";
+            this.radioButton1.Text = "По названию альбома";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(537, 623);
+            this.radioButton2.Location = new System.Drawing.Point(475, 623);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(109, 20);
+            this.radioButton2.Size = new System.Drawing.Size(137, 20);
             this.radioButton2.TabIndex = 37;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "По фамилии";
+            this.radioButton2.Text = "По исполнителю";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // textBox14
