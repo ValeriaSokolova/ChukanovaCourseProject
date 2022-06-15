@@ -13,6 +13,7 @@ namespace КП_БД
     public partial class Меню_администратора : Form
     {
         Database b = new Database();
+        bool flag = false;
         public Меню_администратора()
         {
             InitializeComponent();
@@ -83,35 +84,65 @@ namespace КП_БД
             }
             else
             {
-                MessageBox.Show("Выберете поиск по имени или фамилии");
+                MessageBox.Show("Выберете поиск по  певцу  или альбому");
             }
         }
         // редактировать
         private void button4_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(dataGridView1.SelectedCells[0].FormattedValue);
+            flag = !flag;
+            if (flag)
+            {
+                int id = Convert.ToInt32(dataGridView1.SelectedCells[0].FormattedValue);
 
-            List<string> plastinka = new List<string>();
-            plastinka = b.GetPlastinka(id);
-            textBox2.Text = plastinka[0];
-            textBox3.Text = plastinka[1];
-            textBox4.Text = plastinka[2];
-            textBox5.Text = plastinka[3];
-            textBox6.Text = plastinka[4];
-            comboBox2.SelectedItem = plastinka[5];
-            comboBox4.SelectedItem = plastinka[6];
-            textBox7.Text = plastinka[7];
-            textBox8.Text = plastinka[8];
-            textBox9.Text = plastinka[9];
-            textBox10.Text = plastinka[10];
-            textBox11.Text = plastinka[11];
-            textBox12.Text = plastinka[12];
+                List<string> plastinka = new List<string>();
+                plastinka = b.GetPlastinka(id);
+                textBox2.Text = plastinka[0];
+                textBox3.Text = plastinka[1];
+                textBox4.Text = plastinka[2];
+                textBox5.Text = plastinka[3];
+                textBox6.Text = plastinka[4];
+                comboBox2.SelectedItem = plastinka[5];
+                comboBox4.SelectedItem = plastinka[6];
+                textBox7.Text = plastinka[7];
+                textBox8.Text = plastinka[8];
+                textBox9.Text = plastinka[9];
+                textBox10.Text = plastinka[10];
+                textBox11.Text = plastinka[11];
+                textBox12.Text = plastinka[12];
+                
+            }
+            else
+            {
+                int id = Convert.ToInt32(dataGridView1.SelectedCells[0].FormattedValue);
+                string albom = textBox2.Text;
+                string singer = textBox3.Text;
+                string size = textBox4.Text;
+                string time = textBox5.Text;
+                string startDate = textBox6.Text;
+                string sity = textBox7.Text;
+                int home = Convert.ToInt32(textBox8.Text);
+                string street = textBox9.Text;
+                int index = Convert.ToInt32(textBox10.Text);
+                int flat = Convert.ToInt32(textBox11.Text);
+                string nameOfStudio = textBox12.Text;
+                b.AddStudio(sity, home, street, index, flat, nameOfStudio);
+                int studio_id = b.getStudioId(sity, home, street, index, flat);
+
+                int typeOfPlastinka = comboBox2.SelectedIndex + 1;
+                int price = comboBox4.SelectedIndex + 1;
+                DateTime date = new DateTime();
+                date = DateTime.Parse(startDate);
+                b.DeletePlastinkaByID(id, dataGridView1);
+                b.AddPlastinka(albom, singer, size, time, price, typeOfPlastinka, studio_id, date, dataGridView1);
+
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(textBox1.Text);
-            b.DeleteHumanByID(id,dataGridView1);
+            b.DeletePlastinkaByID(id,dataGridView1);
 
 
 

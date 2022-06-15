@@ -55,7 +55,7 @@ namespace КП_БД
             {
                 connection.Open();
                 DataTable dt = new DataTable();
-                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, " +
+                adapter = new SqlDataAdapter("SELECT ПЛАСТИНКА.id, ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, " +
                     "ЦЕНА.ЦЕНА FROM ПЛАСТИНКА INNER JOIN ТИП_ПЛАСТИНКИ ON ПЛАСТИНКА.ТИП_ПЛАСТИНКИ_id = ТИП_ПЛАСТИНКИ.id " +
                     "INNER JOIN  ЦЕНА ON  ПЛАСТИНКА.ЦЕНА_id = ЦЕНА.id_m " +
                     "Order by ПЛАСТИНКА.ИСПОЛНИТЕЛЬ ", connectionString); /// дописать джоин он по адресу и еще 1 по 
@@ -299,12 +299,12 @@ namespace КП_БД
             }
         }
         
-        public void DeleteAdressById(int id)
+        public void DeleteStudioById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 cmd = new SqlCommand(
-                    "delete from АДРЕС where id_h = @id", connection);
+                    "delete from СТУДИЯ where id = @id", connection);
                 connection.Open();
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
@@ -360,20 +360,20 @@ namespace КП_БД
                 connection.Close();
             }
         }
-        public void DeleteHumanByID(int id, DataGridView dataGrid)
+        public void DeletePlastinkaByID(int id, DataGridView dataGrid)
         {
-            int adressId= getAdressIdByHumanId(id);
+            int adressId= getStudioIdByPlastinkaId(id);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 cmd = new SqlCommand(
-                    "delete from ПЛАСТИНКА where id_p = @id", connection);
+                    "delete from ПЛАСТИНКА where id = @id", connection);
                 connection.Open();
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
                 connection.Close();
 
             }
-            DeleteAdressById(adressId);
+            
         }
         public void ExportExcel(DataGridView dataGrid)
         {

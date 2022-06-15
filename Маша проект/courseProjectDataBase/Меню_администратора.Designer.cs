@@ -162,7 +162,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(524, 497);
+            this.label1.Location = new System.Drawing.Point(490, 497);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 25);
             this.label1.TabIndex = 15;
@@ -451,7 +451,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(505, 393);
+            this.button6.Location = new System.Drawing.Point(529, 393);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(157, 50);
             this.button6.TabIndex = 47;
