@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="КП_БД.Меню_администратора">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>8yAAIAQAASAAABCQEICAAABCIMg5AAAAEXAOAABBBJI=</HashCode>
+      <FileName>Меню_администратора.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="КП_БД.Меню_клиента">
+    <Position X="7.25" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAQAAAAACAAAACADg4AAAAAXAAAABBBAA=</HashCode>
+      <FileName>Меню_клиента.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="КП_БД.Database">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIBAAAAALACwAAAACAAAAAIiAQEAEAAAQgBiAAAA=</HashCode>
+      <FileName>Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="КП_БД.Program">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
