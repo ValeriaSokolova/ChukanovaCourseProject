@@ -152,7 +152,7 @@
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(655, 586);
+            this.textBox13.Location = new System.Drawing.Point(655, 621);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(100, 22);
             this.textBox13.TabIndex = 14;
@@ -379,7 +379,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(475, 588);
+            this.radioButton1.Location = new System.Drawing.Point(475, 623);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(174, 20);
             this.radioButton1.TabIndex = 36;
@@ -390,7 +390,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(475, 623);
+            this.radioButton2.Location = new System.Drawing.Point(495, 572);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(137, 20);
             this.radioButton2.TabIndex = 37;
@@ -400,7 +400,7 @@
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(655, 623);
+            this.textBox14.Location = new System.Drawing.Point(655, 570);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(100, 22);
             this.textBox14.TabIndex = 39;
@@ -454,7 +454,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(157, 50);
             this.button6.TabIndex = 47;
-            this.button6.Text = "having";
+            this.button6.Text = "Показать песни баскова";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 

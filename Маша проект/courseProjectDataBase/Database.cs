@@ -36,7 +36,7 @@ namespace КП_БД
             }
         }
       
-        public void DisplayPeopleDataAndStudioData(DataGridView dataGrid)
+        public void DisplayPlastinkaDataAndStudioData(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -81,15 +81,8 @@ namespace КП_БД
 
 
 
-
-
-
-
-
-
-
         // методы формы администратора
-        public void DisplayPeopleInformAndWorkDataWithConditionHaving(DataGridView dataGrid)
+        public void DisplayBaskovAlboms(DataGridView dataGrid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -222,30 +215,7 @@ namespace КП_БД
 
             }
         }
-        public List<string> GetHumanByName(string name)
-        {
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                List<string> list = new List<string>();
-                DataTable dt = new DataTable();
-                cmd = new SqlCommand("select * from ПЛАСТИНКА where ИМЯ = '" + name+" '", connection);
-                cmd.Parameters.AddWithValue("@id", name);
-                cmd.ExecuteNonQuery();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    list.Add(Convert.ToString(dr["ФАМИЛИЯ"]));
-                    list.Add(Convert.ToString(dr["ИМЯ"]));
-                    list.Add(Convert.ToString(dr["ОТЧЕСТВО"]));
-                    list.Add(Convert.ToString(dr["ПОЛ"]));
-                    list.Add(Convert.ToString(dr["ДАТА_РОЖДЕНИЯ"]));
-                }
-                connection.Close();
-                return list;
-
-            }
-        }
+       
         public int getStudioId(string sity, int home, string street, int index, int flat)
         {
             if (sity != "" && street != "" )
@@ -299,20 +269,7 @@ namespace КП_БД
             }
         }
         
-        public void DeleteStudioById(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                cmd = new SqlCommand(
-                    "delete from СТУДИЯ where id = @id", connection);
-                connection.Open();
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-
-            }
-        }
-        
+       
         public int getStudioIdByPlastinkaId(int Id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

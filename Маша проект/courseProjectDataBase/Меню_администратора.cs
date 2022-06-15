@@ -156,7 +156,7 @@ namespace КП_БД
         // having
         private void button6_Click(object sender, EventArgs e)
         {
-            b.DisplayPeopleInformAndWorkDataWithConditionHaving(dataGridView1);
+            b.DisplayBaskovAlboms(dataGridView1);
         }
 
         private void label2_Click(object sender, EventArgs e)
