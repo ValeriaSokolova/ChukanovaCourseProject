@@ -89,41 +89,23 @@ namespace КП_БД
         // редактировать
         private void button4_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(textBox1.Text);
-            if (0 == tabControl1.SelectedIndex)
-            {
-                List<string> human = new List<string>();
-                human = b.GetHuman(id);
-                textBox2.Text = human[0];
-                textBox3.Text= human[1];
-                textBox4.Text = human[2];
-                textBox5.Text = human[3];
-                textBox6.Text = human[4];
-                comboBox2.SelectedItem = human[5];
-                comboBox4.SelectedItem = human[6];
-                textBox7.Text = human[7];
-                textBox8.Text = human[8];
-                textBox9.Text = human[9];
-                textBox10.Text = human[10];
-                textBox11.Text = human[11];
-                
-                textBox12.Text = human[13];
-               
-            }
-            else if (tabControl1.SelectedIndex == 1)
-            {
-                string sity = textBox7.Text;
-                int home = Convert.ToInt32(textBox8.Text);
-                string street = textBox9.Text;
-                int index = Convert.ToInt32(textBox10.Text);
-                int flat = Convert.ToInt32(textBox11.Text);
-               // b.AddAdress(sity, home, street, index, flat);
-            }
-            else if (tabControl1.SelectedIndex == 2)
-            {
-                string number = textBox12.Text;
-               // b.AddNumber(number, dataGridView3);
-            }
+            int id = Convert.ToInt32(dataGridView1.SelectedCells[0].FormattedValue);
+
+            List<string> plastinka = new List<string>();
+            plastinka = b.GetPlastinka(id);
+            textBox2.Text = plastinka[0];
+            textBox3.Text = plastinka[1];
+            textBox4.Text = plastinka[2];
+            textBox5.Text = plastinka[3];
+            textBox6.Text = plastinka[4];
+            comboBox2.SelectedItem = plastinka[5];
+            comboBox4.SelectedItem = plastinka[6];
+            textBox7.Text = plastinka[7];
+            textBox8.Text = plastinka[8];
+            textBox9.Text = plastinka[9];
+            textBox10.Text = plastinka[10];
+            textBox11.Text = plastinka[11];
+            textBox12.Text = plastinka[12];
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -176,7 +176,7 @@ namespace КП_БД
 
         //  разобраться с адаптером и кмд для запроса по гет айди 
         // либо сделать список списков для людей и там искать уже относительно всей таблицы в памяти
-        public List<string> GetHuman(int id)
+        public List<string> GetPlastinka(int id)
         {
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -184,41 +184,38 @@ namespace КП_БД
                 List<string> list = new List<string>();
                 DataTable dt = new DataTable();
                 /*
-                 
-                 SELECT ЧЕЛОВЕК.ИМЯ, ЧЕЛОВЕК.ФАМИЛИЯ, ЧЕЛОВЕК.ОТЧЕСТВО, ЧЕЛОВЕК.ДАТА_РОЖДЕНИЯ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, СТАТУС.СТАТУС FROM ЧЕЛОВЕК INNER JOIN ДОЛЖНОСТЬ ON ЧЕЛОВЕК.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON  ЧЕЛОВЕК.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN СТАТУС ON  ЧЕЛОВЕК.СТАТУС_id = СТАТУС.id_c
+                 ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, " +
+                     "ЦЕНА.ЦЕНА FROM ПЛАСТИНКА INNER JOIN ТИП_ПЛАСТИНКИ ON ПЛАСТИНКА.ТИП_ПЛАСТИНКИ_id = ТИП_ПЛАСТИНКИ.id " +
+                     "INNER JOIN  ЦЕНА ON  ПЛАСТИНКА.ЦЕНА_id = ЦЕНА.id_m
                  */
-                //, СТАТУС.СТАТУС
-                adapter = new SqlDataAdapter("select ПЛАСТИНКА.ИМЯ, ПЛАСТИНКА.ФАМИЛИЯ, ПЛАСТИНКА.ОТЧЕСТВО, ПЛАСТИНКА.ДАТА_РОЖДЕНИЯ, ПЛАСТИНКА.ПОЛ, ДОЛЖНОСТЬ.ДОЛЖНОСТЬ, НОМЕР_ТЕЛЕФОНА.НОМЕР_ТЕЛЕФОНА, " +
-                    "МЕСТО_РАБОТЫ.МЕСТО_РАБОТЫ, АДРЕС.ГОРОД, АДРЕС.ИНДЕКС, АДРЕС.УЛИЦА, АДРЕС.ДОМ, АДРЕС.КВАРТИРА, СТАТУС.СТАТУС, ТЕЛЕФОН.ТИП_ТЕЛЕФОНА " +
+                adapter = new SqlDataAdapter("select ПЛАСТИНКА.АЛЬБОМ, ПЛАСТИНКА.ИСПОЛНИТЕЛЬ, ПЛАСТИНКА.РАЗМЕР_ПЛАСТИНКИ, ПЛАСТИНКА.ДАТА_ВЫПУСКА, ПЛАСТИНКА.ВРЕМЯ_ПРОИГРЫВАНИЯ," +
+                    " ТИП_ПЛАСТИНКИ.ТИП_ПЛАСТИНКИ, СТУДИЯ.НАЗВАНИЕ, " +
+                    "ЦЕНА.ЦЕНА, СТУДИЯ.ГОРОД, СТУДИЯ.ИНДЕКС, СТУДИЯ.УЛИЦА, СТУДИЯ.ДОМ, СТУДИЯ.КВАРТИРА " +
                     "from ПЛАСТИНКА " +
-                    "INNER JOIN ДОЛЖНОСТЬ ON ПЛАСТИНКА.ДОЛЖНОСТЬ_id = ДОЛЖНОСТЬ.id_d " +
-                    "INNER JOIN  МЕСТО_РАБОТЫ ON ПЛАСТИНКА.МЕСТО_РАБОТЫ_id = МЕСТО_РАБОТЫ.id_m " +
-                    "INNER JOIN АДРЕС ON ПЛАСТИНКА.АДРЕС_id = АДРЕС.id_h " +
-                    "INNER JOIN СТАТУС ON ПЛАСТИНКА.СТАТУС_id = СТАТУС.id_c " +
-                    "AND ЧЕЛОВЕК.id_p = " + id, connection);
+                    "INNER JOIN ТИП_ПЛАСТИНКИ ON ПЛАСТИНКА.ТИП_ПЛАСТИНКИ_id = ТИП_ПЛАСТИНКИ.id " +
+                    "INNER JOIN  ЦЕНА ON ПЛАСТИНКА.ЦЕНА_id = ЦЕНА.id_m " +
+                    "INNER JOIN СТУДИЯ ON ПЛАСТИНКА.СТУДИЯ_id = СТУДИЯ.id " +
+                    "AND ПЛАСТИНКА.id = " + id, connection);
 
 
 
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    list.Add(Convert.ToString(dr["ФАМИЛИЯ"]));
-                    list.Add(Convert.ToString(dr["ИМЯ"]));
-                    list.Add(Convert.ToString(dr["ОТЧЕСТВО"]));
-                    list.Add(Convert.ToString(dr["ПОЛ"]));
-                    list.Add(Convert.ToString(dr["ДАТА_РОЖДЕНИЯ"]));
-                    list.Add(Convert.ToString(dr["ДОЛЖНОСТЬ"]));
-                    list.Add(Convert.ToString(dr["МЕСТО_РАБОТЫ"]));
+                    list.Add(Convert.ToString(dr["ИСПОЛНИТЕЛЬ"]));
+                    list.Add(Convert.ToString(dr["АЛЬБОМ"]));
+                    list.Add(Convert.ToString(dr["РАЗМЕР_ПЛАСТИНКИ"]));
+                    list.Add(Convert.ToString(dr["ВРЕМЯ_ПРОИГРЫВАНИЯ"]));
+                    list.Add(Convert.ToString(dr["ДАТА_ВЫПУСКА"]));
+                    list.Add(Convert.ToString(dr["ТИП_ПЛАСТИНКИ"]));
+                    list.Add(Convert.ToString(dr["ЦЕНА"]));
 
                     list.Add(Convert.ToString(dr["ГОРОД"]));
                     list.Add(Convert.ToString(dr["ДОМ"]));
                     list.Add(Convert.ToString(dr["УЛИЦА"]));
                     list.Add(Convert.ToString(dr["ИНДЕКС"]));
                     list.Add(Convert.ToString(dr["КВАРТИРА"]));
-                    list.Add(Convert.ToString(dr["СТАТУС"]));
+                    list.Add(Convert.ToString(dr["НАЗВАНИЕ"]));
                 }
                 connection.Close();
                 return list;
@@ -316,18 +313,18 @@ namespace КП_БД
             }
         }
         
-        public int getAdressIdByHumanId(int humanId)
+        public int getStudioIdByPlastinkaId(int Id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 adapter = new SqlDataAdapter(
-                   "select * from ПЛАСТИНКА where id_p = " + humanId, connection);
+                   "select * from ПЛАСТИНКА where id = " + Id, connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
                     connection.Close();
-                    return (Convert.ToInt32(dr["АДРЕС_ID"]));
+                    return (Convert.ToInt32(dr["СТУДИЯ_id"]));
                 }
                 return -1;
 
